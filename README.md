@@ -4,12 +4,12 @@ S_RETURN, string return convention
 # Convention
 
 string for ok
-* "1" or "1 " or “1\t"
-* ( "0 " or “0\t" ) + other-string
+* "1" or "1 "
+* "0 " + other-string
 
 string for fail
-* "0" or "0 " or “0\t"
-* ( "0 " or “0\t" ) + other-string
+* "0" or "0 "
+* "0 " + other-string
 * any other string no started with "1"
 * not-string object
 
@@ -31,10 +31,10 @@ assert(S_RETURN.ok() === "1");
 
 assert(S_RETURN.ok("1 a") === "1 a");	//already ok, unchanged
 assert(S_RETURN.ok("1 ") === "1 ");
-assert(S_RETURN.ok("1\t") === "1\t");
-assert(S_RETURN.ok("1 \t  \t a") === "1 \t  \t a");
+assert(S_RETURN.ok("1   a") === "1   a");
 
-assert(S_RETURN.ok("1\n") === "1 1\n");		//check only space and \t
+assert(S_RETURN.ok("1\t") === "1 1\t");		//check only space
+assert(S_RETURN.ok("1\n") === "1 1\n");
 
 assert(S_RETURN.fail("aa") === "0 aa");		// .fail()
 assert(S_RETURN.fail(0) === "0 0");
@@ -43,9 +43,9 @@ assert(S_RETURN.fail() === "0");
 
 assert(S_RETURN.fail("0 a") === "0 a");	//already fail, unchanged
 assert(S_RETURN.fail("0 ") === "0 ");
-assert(S_RETURN.fail("0\t") === "0\t");
-assert(S_RETURN.fail("0 \t  \t a") === "0 \t  \t a");
+assert(S_RETURN.fail("0   a") === "0   a");
 
+assert(S_RETURN.fail("0\t") === "0 0\t");
 assert(S_RETURN.fail("0\n") === "0 0\n");
 
 
@@ -65,13 +65,13 @@ assert(S_RETURN.isOk("1 a") === true);		// .isOk()
 assert(S_RETURN.isOk("1 0") === true);
 assert(S_RETURN.isOk("1 ") === true);
 assert(S_RETURN.isOk("1") === true);
-assert(S_RETURN.isOk("1\ta") === true);
 
 assert(S_RETURN.isOk("0") === false);
 assert(S_RETURN.isOk("") === false);
 assert(S_RETURN.isOk() === false);
 
-assert(S_RETURN.isOk("1\na") === false);		//check only space and \t
+assert(S_RETURN.isOk("1\ta") === false);		//check only space
+assert(S_RETURN.isOk("1\na") === false);
 
 assert(S_RETURN.isOk(true) === false);	//not string
 assert(S_RETURN.isOk(1) === false);

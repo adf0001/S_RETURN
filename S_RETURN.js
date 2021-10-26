@@ -7,7 +7,7 @@ var ok = function (s) {
 	if ((ts = typeof s) === "undefined" || s === "") return "1";
 	if (ts !== "string") s = "" + s;
 
-	return s.match(/^1[ \t]/) ? s : ("1 " + s);
+	return s.match(/^1 /) ? s : ("1 " + s);
 }
 
 var fail = function (s) {
@@ -15,7 +15,7 @@ var fail = function (s) {
 	if ((ts = typeof s) === "undefined" || s === "") return "0";
 	if (ts !== "string") s = "" + s;
 
-	return s.match(/^0[ \t]/) ? s : ("0 " + s);
+	return s.match(/^0 /) ? s : ("0 " + s);
 }
 
 var convert = function (o) {
@@ -26,7 +26,7 @@ var convert = function (o) {
 }
 
 var isOk = function (s) {
-	return !!(typeof s === "string" && s.match(/^1( |\t|$)/));
+	return !!(typeof s === "string" && s.match(/^1( |$)/));
 }
 
 //module
