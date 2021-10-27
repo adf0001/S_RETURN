@@ -22,6 +22,7 @@ var convert = function (o) {
 	if (!o) return fail(o);
 	else if (o instanceof Error) return fail(o.message);
 	else if (typeof o === "object") return ok(JSON.stringify(o));
+	else if (typeof o === "string" && o.match(/^[01]( |$)/)) return o;		//already S_RETURN
 	else return ok(o);
 }
 

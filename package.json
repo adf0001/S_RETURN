@@ -1,6 +1,6 @@
 {
   "name": "s_return",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "S_RETURN, string return convention",
   "main": "S_RETURN.js",
   "scripts": {

@@ -4,7 +4,7 @@ S_RETURN, string return convention
 # Convention
 
 string for ok
-* "1" or "1 "
+* "1" or "1 " ( space only, 0x20 )
 * "0 " + other-string
 
 string for fail
@@ -60,6 +60,13 @@ assert(S_RETURN(0) === "0 0");		// 0 is a value for fail
 assert(S_RETURN(Error("err1")) === "0 err1");		// Error for fail
 
 assert(S_RETURN({ a: 1 }) === '1 {"a":1}');		// json for ok
+
+assert(S_RETURN("0") === "0");		// already S_RETURN, unchanged
+assert(S_RETURN("1") === "1");
+assert(S_RETURN("0 ") === "0 ");
+assert(S_RETURN("1 ") === "1 ");
+assert(S_RETURN("0 a") === "0 a");
+assert(S_RETURN("1 a") === "1 a");
 
 assert(S_RETURN.isOk("1 a") === true);		// .isOk()
 assert(S_RETURN.isOk("1 0") === true);

@@ -45,6 +45,13 @@ module.exports = {
 
 		assert(S_RETURN({ a: 1 }) === '1 {"a":1}');		// json for ok
 
+		assert(S_RETURN("0") === "0");		// already S_RETURN, unchanged
+		assert(S_RETURN("1") === "1");
+		assert(S_RETURN("0 ") === "0 ");
+		assert(S_RETURN("1 ") === "1 ");
+		assert(S_RETURN("0 a") === "0 a");
+		assert(S_RETURN("1 a") === "1 a");
+
 		assert(S_RETURN.isOk("1 a") === true);		// .isOk()
 		assert(S_RETURN.isOk("1 0") === true);
 		assert(S_RETURN.isOk("1 ") === true);
