@@ -5,7 +5,7 @@ S_RETURN, string return convention
 
 string for ok
 * "1" or "1 " ( space only, 0x20 )
-* "0 " + other-string
+* "1 " + other-string
 
 string for fail
 * "0" or "0 "
